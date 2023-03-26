@@ -1,4 +1,4 @@
-package util;
+package com.nutrition.calc.util;
 
 import java.time.LocalTime;
 
