@@ -2,12 +2,14 @@ package com.nutrition.calc.service;
 
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static com.nutrition.calc.util.ValidationUtil.checkNotFound;
 import static com.nutrition.calc.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class UserService {
     private final UserRepository repository;
 

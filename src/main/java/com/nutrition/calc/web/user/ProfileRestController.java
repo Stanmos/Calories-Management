@@ -1,9 +1,11 @@
 package com.nutrition.calc.web.user;
 
 import com.nutrition.calc.model.User;
+import org.springframework.stereotype.Controller;
 
 import static com.nutrition.calc.web.SecurityUtil.authUserId;
 
+@Controller
 public class ProfileRestController extends AbstractUserController {
     public User get() {
         return super.get(authUserId());

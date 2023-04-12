@@ -1,9 +1,11 @@
 package com.nutrition.calc.web.user;
 
 import com.nutrition.calc.model.User;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
+@Controller
 public class AdminRestController extends AbstractUserController {
     @Override
     public List<User> getAll() {
