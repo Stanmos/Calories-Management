@@ -1,6 +1,7 @@
-package com.nutrition.calc.repository;
+package com.nutrition.calc.repository.inmemory;
 
 import com.nutrition.calc.model.Meal;
+import com.nutrition.calc.repository.MealRepository;
 import com.nutrition.calc.util.MealsUtil;
 
 import java.util.Collection;
@@ -8,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class InMemoryMealRepository implements MealRepository{
+public class InMemoryMealRepository implements MealRepository {
     private final Map<Integer, Meal> repository = new ConcurrentHashMap<>();
     private final AtomicInteger counter = new AtomicInteger(0);
 

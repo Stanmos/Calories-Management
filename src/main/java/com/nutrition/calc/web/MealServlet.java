@@ -1,7 +1,7 @@
 package com.nutrition.calc.web;
 
 import com.nutrition.calc.model.Meal;
-import com.nutrition.calc.repository.InMemoryMealRepository;
+import com.nutrition.calc.repository.inmemory.InMemoryMealRepository;
 import com.nutrition.calc.repository.MealRepository;
 import com.nutrition.calc.util.MealsUtil;
 import org.slf4j.Logger;
