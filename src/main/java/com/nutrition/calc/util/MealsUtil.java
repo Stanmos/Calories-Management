@@ -1,7 +1,7 @@
 package com.nutrition.calc.util;
 
 import com.nutrition.calc.model.Meal;
-import com.nutrition.calc.model.MealTo;
+import com.nutrition.calc.to.MealTo;
 
 
 import java.time.LocalDate;

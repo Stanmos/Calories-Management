@@ -1,4 +1,4 @@
-package com.nutrition.calc.model;
+package com.nutrition.calc.to;
 
 import java.time.LocalDateTime;
 

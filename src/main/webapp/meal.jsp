@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <c:forEach items="${requestScope.meals}" var="meal">
-            <jsp:useBean id="meal" type="com.nutrition.calc.model.MealTo"/>
+            <jsp:useBean id="meal" type="com.nutrition.calc.to.MealTo"/>
             <tr class="${meal.excess ? 'excess' : 'normal'}">
                 <td>
                         <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
