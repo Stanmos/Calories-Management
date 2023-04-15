@@ -16,8 +16,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.nutrition.calc.repository.inmemory.InMemoryUserRepository.ADMIN_ID;
-import static com.nutrition.calc.repository.inmemory.InMemoryUserRepository.USER_ID;
+import static com.nutrition.calc.UserTestData.ADMIN_ID;
+import static com.nutrition.calc.UserTestData.USER_ID;
 
 @Repository
 public class InMemoryMealRepository implements MealRepository {
