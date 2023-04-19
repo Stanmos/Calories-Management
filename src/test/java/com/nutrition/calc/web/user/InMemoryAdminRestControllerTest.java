@@ -1,19 +1,18 @@
 package com.nutrition.calc.web.user;
 
+import com.nutrition.calc.repository.inmemory.InMemoryUserRepository;
 import com.nutrition.calc.util.exception.NotFoundException;
 import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.nutrition.calc.repository.inmemory.InMemoryUserRepository;
 
 import java.util.Arrays;
 
 import static com.nutrition.calc.UserTestData.NOT_FOUND;
 import static com.nutrition.calc.UserTestData.USER_ID;
 
-@Ignore
 public class InMemoryAdminRestControllerTest {
     private static final Logger log = LoggerFactory.getLogger(InMemoryAdminRestControllerTest.class);
 
@@ -23,7 +22,7 @@ public class InMemoryAdminRestControllerTest {
 
     @BeforeClass
     public static void beforeClass() {
-        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/inmemory.xml");
         log.info("\n{}\n", Arrays.toString(appCtx.getBeanDefinitionNames()));
         controller = appCtx.getBean(AdminRestController.class);
         repository = appCtx.getBean(InMemoryUserRepository.class);

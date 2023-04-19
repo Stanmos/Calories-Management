@@ -4,7 +4,6 @@ import com.nutrition.calc.repository.inmemory.InMemoryUserRepository;
 import com.nutrition.calc.util.exception.NotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static com.nutrition.calc.UserTestData.NOT_FOUND;
 import static com.nutrition.calc.UserTestData.USER_ID;
 
-@ContextConfiguration("classpath:spring/spring-app.xml")
+@ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/inmemory.xml"})
 @RunWith(SpringRunner.class)
-@Ignore
 public class InMemoryAdminRestControllerSpringTest {
     @Autowired
     private AdminRestController controller;

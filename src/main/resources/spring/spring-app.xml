@@ -8,8 +8,6 @@
 <!--        <constructor-arg name="repository" ref="inmemoryUserRepository"/>-->
 <!--    </bean>-->
 
-    <context:component-scan base-package="com.nutrition.**.repository.jdbc"/>
-
     <context:component-scan base-package="com.nutrition.**.service"/>
 
     <context:component-scan base-package="com.nutrition.**.web"/>
