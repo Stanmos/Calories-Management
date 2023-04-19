@@ -1,13 +1,13 @@
 package com.nutrition.calc.repository.inmemory;
 
+import com.nutrition.calc.MealTestData;
+import com.nutrition.calc.UserTestData;
 import com.nutrition.calc.model.Meal;
 import com.nutrition.calc.repository.MealRepository;
-import com.nutrition.calc.util.MealsUtil;
 import com.nutrition.calc.util.Util;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -16,18 +16,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.nutrition.calc.UserTestData.ADMIN_ID;
-import static com.nutrition.calc.UserTestData.USER_ID;
-
 @Repository
 public class InMemoryMealRepository implements MealRepository {
     // Map  userId -> mealRepository
     private final Map<Integer, InMemoryBaseRepository<Meal>> usersMealsMap = new ConcurrentHashMap<>();
 
     {
-        MealsUtil.meals.forEach(meal -> save(meal, USER_ID));
-        save(new Meal(LocalDateTime.of(2015, Month.JUNE, 1, 14, 0), "Админ ланч", 510), ADMIN_ID);
-        save(new Meal(LocalDateTime.of(2015, Month.JUNE, 1, 21, 0), "Админ ужин", 1500), ADMIN_ID);
+        InMemoryBaseRepository<Meal> userMeals = new InMemoryBaseRepository<>();
+        MealTestData.meals.forEach(userMeals::put);
+        usersMealsMap.put(UserTestData.USER_ID, userMeals);
     }
 
     @Override
