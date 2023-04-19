@@ -1,10 +1,12 @@
 package com.nutrition.calc.web;
 
+import com.nutrition.calc.model.AbstractBaseEntity;
+
 import static com.nutrition.calc.util.MealsUtil.DEFAULT_CALORIES_PER_DAY;
 
 public class SecurityUtil {
 
-    private static int id = 1;
+    private static int id = AbstractBaseEntity.START_SEQ;
     public static int authUserId() {
         return id;
     }
