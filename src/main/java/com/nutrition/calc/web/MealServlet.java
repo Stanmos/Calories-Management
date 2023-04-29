@@ -1,5 +1,6 @@
 package com.nutrition.calc.web;
 
+import com.nutrition.calc.Profiles;
 import com.nutrition.calc.model.Meal;
 import com.nutrition.calc.web.meal.MealRestController;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -26,7 +27,10 @@ public class MealServlet extends HttpServlet {
 
     @Override
     public void init() {
-        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
+        springContext = new ClassPathXmlApplicationContext(new String[]{"spring/spring-app.xml", "spring/spring-db.xml"}, false);
+//       springContext.setConfigLocations("spring/spring-app.xml", "spring/spring-db.xml");
+        springContext.getEnvironment().setActiveProfiles(Profiles.ACTIVE_DB, Profiles.REPOSITORY_IMPLEMENTATION);
+        springContext.refresh();
         mealController = springContext.getBean(MealRestController.class);
     }
 

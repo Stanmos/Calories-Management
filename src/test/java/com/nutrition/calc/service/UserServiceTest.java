@@ -1,5 +1,6 @@
 package com.nutrition.calc.service;
 
+import com.nutrition.calc.Profiles;
 import com.nutrition.calc.UserTestData;
 import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
@@ -13,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -31,6 +33,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 })
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@ActiveProfiles({Profiles.ACTIVE_DB, Profiles.REPOSITORY_IMPLEMENTATION})
 public class UserServiceTest {
     private static final Logger log = getLogger("result");
 
