@@ -3,12 +3,14 @@ package com.nutrition.calc.service;
 import com.nutrition.calc.UserTestData;
 import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
+import com.nutrition.calc.repository.JpaUtil;
 import com.nutrition.calc.util.exception.NotFoundException;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.DataAccessException;
 
 import javax.validation.ConstraintViolationException;
@@ -24,11 +26,18 @@ public abstract class AbstractUserServiceTest extends AbstractServiceTest {
     private UserService service;
 
     @Autowired
+    @Lazy
+    protected JpaUtil jpaUtil;
+
+    @Autowired
     private CacheManager cacheManager;
 
     @Before
     public void setup() {
         cacheManager.getCache("users").clear();
+        if (isJpaBased()) {
+            jpaUtil.clear2ndLevelHibernateCache();
+        }
     }
 
     @Test
