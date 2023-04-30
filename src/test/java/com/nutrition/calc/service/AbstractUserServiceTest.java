@@ -1,36 +1,31 @@
 package com.nutrition.calc.service;
 
-import com.nutrition.calc.ActiveDbProfileResolver;
-import com.nutrition.calc.Profiles;
 import com.nutrition.calc.UserTestData;
 import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.util.exception.NotFoundException;
-import org.junit.AfterClass;
-import org.junit.Rule;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.Stopwatch;
-import org.junit.runner.Description;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static com.nutrition.calc.UserTestData.*;
 import static org.junit.Assert.assertThrows;
-import static org.slf4j.LoggerFactory.getLogger;
 
 public abstract class AbstractUserServiceTest extends AbstractServiceTest {
     @Autowired
     private UserService service;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @Before
+    public void setup() {
+        cacheManager.getCache("users").clear();
+    }
 
     @Test
     public void create() {
