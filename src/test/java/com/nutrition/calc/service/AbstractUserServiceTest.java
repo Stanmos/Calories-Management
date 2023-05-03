@@ -1,6 +1,5 @@
 package com.nutrition.calc.service;
 
-import com.nutrition.calc.UserTestData;
 import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.repository.JpaUtil;
@@ -69,8 +68,8 @@ public abstract class AbstractUserServiceTest extends AbstractServiceTest {
 
     @Test
     public void get() {
-        User user = service.get(USER_ID);
-        USER_MATCHER.assertMatch(user, UserTestData.user);
+        User user = service.get(ADMIN_ID);
+        USER_MATCHER.assertMatch(user, admin);
     }
 
     @Test
