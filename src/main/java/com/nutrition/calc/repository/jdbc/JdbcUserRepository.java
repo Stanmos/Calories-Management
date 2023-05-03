@@ -3,6 +3,7 @@ package com.nutrition.calc.repository.jdbc;
 import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.repository.UserRepository;
+import com.nutrition.calc.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -40,6 +41,8 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     @Transactional
     public User save(User user) {
+        ValidationUtil.validate(user);
+
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
 
         if (user.isNew()) {

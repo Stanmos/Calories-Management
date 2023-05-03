@@ -2,6 +2,7 @@ package com.nutrition.calc.repository.jdbc;
 
 import com.nutrition.calc.model.Meal;
 import com.nutrition.calc.repository.MealRepository;
+import com.nutrition.calc.util.ValidationUtil;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,6 +40,7 @@ public class JdbcMealRepository implements MealRepository {
     @Override
     @Transactional
     public Meal save(Meal meal, int userId) {
+        ValidationUtil.validate(meal);
         MapSqlParameterSource map = new MapSqlParameterSource()
                 .addValue("id", meal.getId())
                 .addValue("description", meal.getDescription())
