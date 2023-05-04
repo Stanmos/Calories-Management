@@ -1,18 +1,15 @@
 package com.nutrition.calc.web;
 
+import com.nutrition.calc.UserTestData;
+import org.junit.jupiter.api.Test;
+
 import static com.nutrition.calc.MealTestData.meals;
 import static com.nutrition.calc.model.AbstractBaseEntity.START_SEQ;
 import static com.nutrition.calc.util.MealsUtil.getTos;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
-import com.nutrition.calc.UserTestData;
-import org.junit.Test;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class RootControllerTest extends AbstractControllerTest {
 

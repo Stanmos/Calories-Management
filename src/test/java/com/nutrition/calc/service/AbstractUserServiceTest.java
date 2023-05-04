@@ -3,7 +3,7 @@ package com.nutrition.calc.service;
 import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.util.exception.NotFoundException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.nutrition.calc.UserTestData.*;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class AbstractUserServiceTest extends AbstractServiceTest {
     @Autowired

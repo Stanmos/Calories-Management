@@ -2,8 +2,8 @@ package com.nutrition.calc.service;
 
 import com.nutrition.calc.model.Meal;
 import com.nutrition.calc.util.exception.NotFoundException;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
@@ -15,7 +15,7 @@ import static com.nutrition.calc.MealTestData.*;
 import static com.nutrition.calc.UserTestData.ADMIN_ID;
 import static com.nutrition.calc.UserTestData.USER_ID;
 import static java.time.LocalDateTime.of;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class AbstractMealServiceTest extends AbstractServiceTest {
 
@@ -80,7 +80,7 @@ public abstract class AbstractMealServiceTest extends AbstractServiceTest {
     @Test
     public void updateNotOwn() {
         NotFoundException exception = assertThrows(NotFoundException.class, () -> service.update(getUpdated(), ADMIN_ID));
-        Assert.assertEquals("Not found entity with id=" + MEAL1_ID, exception.getMessage());
+        Assertions.assertEquals("Not found entity with id=" + MEAL1_ID, exception.getMessage());
         MEAL_MATCHER.assertMatch(service.get(MEAL1_ID, USER_ID), meal1);
     }
 

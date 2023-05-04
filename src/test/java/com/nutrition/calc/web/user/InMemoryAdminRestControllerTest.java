@@ -2,7 +2,7 @@ package com.nutrition.calc.web.user;
 
 import com.nutrition.calc.repository.inmemory.InMemoryUserRepository;
 import com.nutrition.calc.util.exception.NotFoundException;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,7 +20,7 @@ public class InMemoryAdminRestControllerTest {
     private static AdminRestController controller;
     private static InMemoryUserRepository repository;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/inmemory.xml");
         log.info("\n{}\n", Arrays.toString(appCtx.getBeanDefinitionNames()));
@@ -28,13 +28,13 @@ public class InMemoryAdminRestControllerTest {
         repository = appCtx.getBean(InMemoryUserRepository.class);
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         appCtx.close();
     }
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    public void setup() {
         // re-initialize
         repository.init();
     }
@@ -42,11 +42,11 @@ public class InMemoryAdminRestControllerTest {
     @Test
     public void delete() {
         controller.delete(USER_ID);
-        Assert.assertNull(repository.get(USER_ID));
+        Assertions.assertNull(repository.get(USER_ID));
     }
 
     @Test
     public void deleteNotFound() {
-        Assert.assertThrows(NotFoundException.class, () -> controller.delete(NOT_FOUND));
+        Assertions.assertThrows(NotFoundException.class, () -> controller.delete(NOT_FOUND));
     }
 }
