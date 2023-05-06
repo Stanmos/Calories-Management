@@ -23,9 +23,32 @@ public class MealRestControllerTest extends AbstractControllerTest {
     private MealService mealService;
 
     @Test
+    void get() throws Exception {
+        perform(MockMvcRequestBuilders.get(REST_URL + MEAL1_ID))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
     void delete() throws Exception {
         perform(MockMvcRequestBuilders.delete(REST_URL + MEAL1_ID))
                 .andExpect(status().isNoContent());
         assertThrows(NotFoundException.class, () -> mealService.get(MEAL1_ID, USER_ID));
+    }
+
+    @Test
+    void getAll() throws Exception {
+        perform(MockMvcRequestBuilders.get(REST_URL))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void getBetween() throws Exception {
+        perform(MockMvcRequestBuilders.get(REST_URL + "between?startDateTime=2020-01-30T07:00&endDateTime=2020-01-31T11:00:00"))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 }
