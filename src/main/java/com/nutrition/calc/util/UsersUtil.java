@@ -1,0 +1,14 @@
+package com.nutrition.calc.util;
+
+import com.nutrition.calc.model.Role;
+import com.nutrition.calc.model.User;
+import com.nutrition.calc.to.UserTo;
+
+public class UsersUtil {
+
+    public static final int DEFAULT_CALORIES_PER_DAY = 2000;
+
+    public static User createNewFromTo(UserTo userTo) {
+        return new User(null, userTo.getName(), userTo.getEmail().toLowerCase(), userTo.getPassword(), Role.USER);
+    }
+}

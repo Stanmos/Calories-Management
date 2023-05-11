@@ -2,7 +2,7 @@ package com.nutrition.calc.web;
 
 import com.nutrition.calc.model.AbstractBaseEntity;
 
-import static com.nutrition.calc.util.MealsUtil.DEFAULT_CALORIES_PER_DAY;
+import static com.nutrition.calc.util.UsersUtil.DEFAULT_CALORIES_PER_DAY;
 
 public class SecurityUtil {
 

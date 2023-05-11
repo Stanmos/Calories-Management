@@ -2,6 +2,8 @@ package com.nutrition.calc.web.user;
 
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.service.UserService;
+import com.nutrition.calc.to.UserTo;
+import com.nutrition.calc.util.UsersUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ public abstract class AbstractUserController {
     public User get(int id) {
         log.info("get {}", id);
         return service.get(id);
+    }
+
+    public void create(UserTo userTo) {
+        create(UsersUtil.createNewFromTo(userTo));
     }
 
     public User create(User user) {

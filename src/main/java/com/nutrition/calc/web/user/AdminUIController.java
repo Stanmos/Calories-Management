@@ -1,7 +1,7 @@
 package com.nutrition.calc.web.user;
 
-import com.nutrition.calc.model.Role;
 import com.nutrition.calc.model.User;
+import com.nutrition.calc.to.UserTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +27,8 @@ public class AdminUIController extends AbstractUserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@RequestParam String name,
-                       @RequestParam String email,
-                       @RequestParam String password) {
-        super.create(new User(null, name, email, password, Role.USER));
+    public void create(UserTo userTo) {
+        super.create(userTo);
     }
 
     @Override

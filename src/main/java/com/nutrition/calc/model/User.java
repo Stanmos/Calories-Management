@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-import static com.nutrition.calc.util.MealsUtil.DEFAULT_CALORIES_PER_DAY;
+import static com.nutrition.calc.util.UsersUtil.DEFAULT_CALORIES_PER_DAY;
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NamedQueries({
