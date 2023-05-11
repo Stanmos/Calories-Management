@@ -2,10 +2,14 @@ package com.nutrition.calc.web.user;
 
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.to.UserTo;
+import com.nutrition.calc.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,6 +23,12 @@ public class AdminUIController extends AbstractUserController {
     }
 
     @Override
+    @GetMapping("/{id}")
+    public User get(@PathVariable int id) {
+        return super.get(id);
+    }
+
+    @Override
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
@@ -27,9 +37,14 @@ public class AdminUIController extends AbstractUserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(UserTo userTo) {
-        super.create(userTo);
+    public void createOrUpdate(UserTo userTo) {
+        if (userTo.isNew()) {
+            super.create(userTo);
+        } else {
+            super.update(userTo, userTo.getId());
+        }
     }
+
 
     @Override
     @PostMapping("/{id}")

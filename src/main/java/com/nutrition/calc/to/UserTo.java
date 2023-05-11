@@ -1,6 +1,8 @@
 package com.nutrition.calc.to;
 
-public class UserTo {
+import com.nutrition.calc.model.AbstractBaseEntity;
+
+public class UserTo extends AbstractBaseEntity {
     private Integer id;
 
     private String name;

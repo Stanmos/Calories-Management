@@ -2,6 +2,8 @@ package com.nutrition.calc.service;
 
 import com.nutrition.calc.model.User;
 import com.nutrition.calc.repository.UserRepository;
+import com.nutrition.calc.to.UserTo;
+import com.nutrition.calc.util.UsersUtil;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,14 @@ public class UserService {
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
         return repository.save(user);
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void update(UserTo userTo) {
+        User user = get(userTo.getId());
+        User updatedUser = UsersUtil.updateFromTo(user, userTo);
+        repository.save(updatedUser);   // !! need only for JDBC implementation
     }
 
     @CacheEvict(value = "users", allEntries = true)
