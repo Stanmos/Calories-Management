@@ -1,12 +1,19 @@
 package com.nutrition.calc.to;
 
 import com.nutrition.calc.model.AbstractBaseEntity;
+import com.nutrition.calc.util.UsersUtil;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serial;
+import java.io.Serializable;
 
-public class UserTo extends AbstractBaseEntity {
+public class UserTo extends AbstractBaseEntity implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private Integer id;
 
     @NotBlank
@@ -22,14 +29,23 @@ public class UserTo extends AbstractBaseEntity {
     @Size(min = 5, max = 32, message = "length must be between 5 and 32 characters")
     private String password;
 
+    @Range(min = 10, max = 10000)
+    @NotNull
+    private Integer caloriesPerDay = UsersUtil.DEFAULT_CALORIES_PER_DAY;
+
     public UserTo() {
     }
 
-    public UserTo(Integer id, String name, String email, String password) {
+    public UserTo(Integer id, String name, String email, String password, int caloriesPerDay) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.caloriesPerDay = caloriesPerDay;
+    }
+
+    public Integer getCaloriesPerDay() {
+        return caloriesPerDay;
     }
 
     public Integer getId() {
@@ -74,6 +90,7 @@ public class UserTo extends AbstractBaseEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", caloriesPerDay='" + caloriesPerDay + '\'' +
                 '}';
     }
 }
