@@ -48,7 +48,7 @@ public class AdminUIController extends AbstractUserController {
         if (userTo.isNew()) {
             super.create(userTo);
         } else {
-            super.update(userTo, userTo.id());
+            super.update(userTo, userTo.getId());
         }
         return ResponseEntity.ok().build();
     }
