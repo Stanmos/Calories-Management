@@ -44,6 +44,10 @@ public class UserTo extends AbstractBaseEntity implements Serializable {
         this.caloriesPerDay = caloriesPerDay;
     }
 
+    public void setCaloriesPerDay(Integer caloriesPerDay) {
+        this.caloriesPerDay = caloriesPerDay;
+    }
+
     public Integer getCaloriesPerDay() {
         return caloriesPerDay;
     }
